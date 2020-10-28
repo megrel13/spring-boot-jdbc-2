@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @JdbcTest
 @DisplayName("UserJdbc должен корректно: ")
-@Import(UserJdbcImpl.class)
+@Import(UserDaoJdbcImpl.class)
 public class UserJdbcImplTest {
     @Autowired
     UserDaoJdbc userDaoJdbc;

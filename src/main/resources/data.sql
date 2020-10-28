@@ -14,5 +14,5 @@ VALUES (1, 'MASHA', 20, 1),
 INSERT INTO PETS(ID, NICKNAME, USER_ID)
 VALUES (1, 'barsik', 1),
        (2, 'shaniya', 2),
-       (3, 'bobik', 2),
-       (4, 'princeGregory', 3);
+       (3, 'bobik', 3),
+       (4, 'princeGregory', 4);

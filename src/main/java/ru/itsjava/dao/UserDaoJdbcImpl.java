@@ -20,7 +20,7 @@ import java.util.Optional;
 @SuppressWarnings("ALL")
 @Repository
 @AllArgsConstructor
-public class UserJdbcImpl implements UserDaoJdbc {
+public class UserDaoJdbcImpl implements UserDaoJdbc {
     //    private final JdbcOperations jdbcOperations;
     private final NamedParameterJdbcOperations jdbcOperations;
 
@@ -52,6 +52,22 @@ public class UserJdbcImpl implements UserDaoJdbc {
         return Optional.of(jdbcOperations.queryForObject("select u.ID, u.NAME, u.AGE, e.ID, e.EMAIL, p.ID, p.NICKNAME " +
                         " from USERS as u, EMAILS as e, PETS as p where u.ID = :ID and u.EMAIL_ID = e.id and p.USER_ID = u.ID",
                 params, new UserMapper()));
+    }
+
+    @Override
+    public void changeAge(User user, int newAge) {
+        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+        mapSqlParameterSource.addValue("ID", user.getId());
+        mapSqlParameterSource.addValue("AGE", newAge);
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbcOperations.update("UPDATE USERS(AGE) VALUES (AGE=:AGE) WHERE (ID = :ID)",
+            mapSqlParameterSource, keyHolder);
+        user.setId(keyHolder.getKey().longValue());
+    }
+
+    @Override
+    public void deleteUser(User user) {
+
     }
 
 
