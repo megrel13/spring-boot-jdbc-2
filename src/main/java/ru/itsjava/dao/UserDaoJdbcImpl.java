@@ -61,13 +61,17 @@ public class UserDaoJdbcImpl implements UserDaoJdbc {
         mapSqlParameterSource.addValue("AGE", newAge);
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcOperations.update("UPDATE USERS(AGE) VALUES (AGE=:AGE) WHERE (ID = :ID)",
-            mapSqlParameterSource, keyHolder);
+                mapSqlParameterSource, keyHolder);
         user.setId(keyHolder.getKey().longValue());
     }
 
     @Override
     public void deleteUser(User user) {
-
+        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+        mapSqlParameterSource.addValue("ID", user.getId());
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbcOperations.update("DELETE FROM USERS WHERE (ID = :ID)",
+                mapSqlParameterSource, keyHolder);
     }
 
 
