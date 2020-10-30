@@ -34,7 +34,7 @@ public class EmailDaoJdbcImpl implements EmailDaoJdbc {
         mapSqlParameterSource.addValue("ID", email.getId());
         mapSqlParameterSource.addValue("EMAIL", email.getEmail());
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        jdbcOperations.update("INSERT INTO EMAIL(EMAIL) VALUES (:EMAIL)",
+        jdbcOperations.update("INSERT INTO EMAILS(EMAIL) VALUES (:EMAIL)",
                 mapSqlParameterSource, keyHolder);
         email.setId(keyHolder.getKey().longValue());
     }
