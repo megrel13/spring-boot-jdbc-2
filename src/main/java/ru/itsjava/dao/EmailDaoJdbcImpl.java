@@ -50,7 +50,7 @@ public class EmailDaoJdbcImpl implements EmailDaoJdbc {
     public void changeMail(Email email, String newEmail) {
         final Map<String, Object> params = new HashMap<>();
         params.put("ID", email.getId());
-        params.put("EMAIL", email.getEmail());
+        params.put("EMAIL", newEmail);
         jdbcOperations.update("UPDATE EMAILS SET EMAIL=:EMAIL where ID=:ID", params);
     }
 

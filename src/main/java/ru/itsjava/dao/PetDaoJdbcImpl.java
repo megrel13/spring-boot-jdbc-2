@@ -47,8 +47,8 @@ public class PetDaoJdbcImpl implements PetDaoJdbc {
     public void changeNickname(Pet pet, String newNickname) {
         final Map<String, Object> params = new HashMap<>();
         params.put("ID", pet.getId());
-        params.put("NICKNAME", pet.getNickname());
-        jdbcOperations.update("DELETE FROM PETS WHERE ID=:ID", params);
+        params.put("NICKNAME", newNickname);
+        jdbcOperations.update("UPDATE PETS SET NICKNAME WHERE ID=:ID", params);
     }
 
     @Override
